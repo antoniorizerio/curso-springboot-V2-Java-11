@@ -2,21 +2,35 @@ package com.educandoweb.course.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Devemos utilizar a implementação de Serializable: Para meu objeto ser transformado em cadeias de Bytes, para o objeto trafegar
  * na rede, para o objeto ser gravado em arquivos.
+ * Faça sua classe depender da Especificação não da Implementação: import javax.persistence.Entity;
  * 
  * @author Antonio Rizério JR
  *
  */
-public class User implements Serializable{
+@Entity
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column
 	private String name;
+	@Column
 	private String email;
+	@Column
 	private String phone;
+	@Column
 	private String password;
 	
 	public User() { 
