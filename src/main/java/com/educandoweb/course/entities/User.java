@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Devemos utilizar a implementação de Serializable: Para meu objeto ser transformado em cadeias de Bytes, para o objeto trafegar
  * na rede, para o objeto ser gravado em arquivos.
@@ -38,6 +40,12 @@ public class User implements Serializable {
 	@Column
 	private String password;
 	
+	/**
+	 * Por padrão o JPA não carrega coleções de objetos, para não sobrecarregar a memória, ele trabalha com a opção
+	 * lazy loading.
+	 */
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	
